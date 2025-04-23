@@ -1,0 +1,64 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background: #fdfdfd;
+    color: #333;
+  }
+
+  header, footer {
+    background-color: #222;
+    color: white;
+    text-align: center;
+    padding: 1rem;
+  }
+
+  main {
+    max-width: 800px;
+    margin: auto;
+    padding: 2rem;
+  }
+
+  img {
+    width: 150px;
+    border-radius: 50%;
+  }
+
+  section {
+    justify-content: center;
+    margin-bottom: 2rem;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  table, th, td {
+    border: 1px solid #aaa;
+  }
+
+  th, td {
+    padding: 10px;
+    text-align: left;
+  }
+
+  video {
+    max-width: 100%;
+    height: auto;
+  }
+
+  a {
+    color: #007acc;
+  }
+
+.about-me {
+    justify-content: center;
+    text-align: center;
+}
+
+.Project-Demo{
+    justify-content: center;
+    text-align: center;
+}
