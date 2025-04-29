@@ -47,23 +47,25 @@
         <script>
             const toggleBtn = document.getElementById('theme-toggle');
             const body = document.body;
-          
+
             toggleBtn.addEventListener('click', () => {
-              body.classList.toggle('dark');
-              if (body.classList.contains('dark')) {
-                toggleBtn.textContent = '🌙 Dark Mode';
-              } else {
-                toggleBtn.textContent = '☀️ Light Mode';
-              }
+                body.classList.toggle('dark');
+                if (body.classList.contains('dark')) {
+                    toggleBtn.textContent = '🌙 Dark Mode';
+                } else {
+                    toggleBtn.textContent = '☀️ Light Mode';
+                }
             });
-          </script>
+        </script>
     </section>
 
     <main class="grid-container">
         <div class="card">
             <img src="./src/img/Pikachu.png" alt="Pikachu">
             <h2>Pikachu</h2>
-            <p>Electric</p>
+            <p>
+                <span class="type-electric">Electric</span>
+            </p>
             <div class="checkbox-wrapper-14">
                 <input id="s1-1" type="checkbox" class="switch">
                 <label for="s1-1">Captured</label>
@@ -73,7 +75,9 @@
         <div class="card">
             <img src="./src/img/Charmander.png" alt="Charmander">
             <h2>Charmander</h2>
-            <p>Fire</p>
+            <p>
+                <span class="type-fire">Fire</span>
+            </p>
             <div class="checkbox-wrapper-14">
                 <input id="s1-2" type="checkbox" class="switch">
                 <label for="s1-2">Captured</label>
@@ -83,7 +87,9 @@
         <div class="card">
             <img src="./src/img/Squirtle.png" alt="Squirtle">
             <h2>Squirtle</h2>
-            <p>Water</p>
+            <p>
+                <span class="type-water">Water</span>
+            </p>
             <div class="checkbox-wrapper-14">
                 <input id="s1-3" type="checkbox" class="switch">
                 <label for="s1-3">Captured</label>
@@ -93,6 +99,10 @@
         <div class="card">
             <img src="./src/img/Bulbasaur.png" alt="Bulbasaur">
             <h2>Bulbasaur</h2>
+            <p>
+                <span class="type-grass">Grass</span>
+                <span class="type-poison">Poison</span>
+            </p>
             <p>Grass / Poison</p>
             <div class="checkbox-wrapper-14">
                 <input id="s1-4" type="checkbox" class="switch">
@@ -103,7 +113,9 @@
         <div class="card">
             <img src="./src/img/Jigglypuff.png" alt="Jigglypuff">
             <h2>Jigglypuff</h2>
-            <p>Normal / Fairy</p>
+            <p>
+                <span class="type-normal">Normal</span>
+            </p>
             <div class="checkbox-wrapper-14">
                 <input id="s1-5" type="checkbox" class="switch">
                 <label for="s1-5">Captured</label>
@@ -113,7 +125,9 @@
         <div class="card">
             <img src="./src/img/Meowth.png" alt="Meowth">
             <h2>Meowth</h2>
-            <p>Normal</p>
+            <p>
+                <span class="type-normal">Normal</span>
+            </p>
             <div class="checkbox-wrapper-14">
                 <input id="s1-6" type="checkbox" class="switch">
                 <label for="s1-6">Captured</label>
@@ -123,7 +137,9 @@
         <div class="card">
             <img src="./src/img/Psyduck.png" alt="Psyduck">
             <h2>Psyduck</h2>
-            <p>Water</p>
+            <p>
+                <span class="type-water">Water</span>
+            </p>
             <div class="checkbox-wrapper-14">
                 <input id="s1-7" type="checkbox" class="switch">
                 <label for="s1-7">Captured</label>
@@ -133,7 +149,9 @@
         <div class="card">
             <img src="./src/img/Machop.png" alt="Machop">
             <h2>Machop</h2>
-            <p>Fighting</p>
+            <p>
+                <span class="type-fire">Fighting</span>
+            </p>
             <div class="checkbox-wrapper-14">
                 <input id="s1-8" type="checkbox" class="switch">
                 <label for="s1-8">Captured</label>
@@ -143,7 +161,10 @@
         <div class="card">
             <img src="./src/img/Gastly.png" alt="Gastly">
             <h2>Gastly</h2>
-            <p>Ghost / Poison</p>
+            <p>
+                <span class="type-grass">Ghost</span>
+                <span class="type-poison">Poison</span>
+            </p>
             <div class="checkbox-wrapper-14">
                 <input id="s1-9" type="checkbox" class="switch">
                 <label for="s1-9">Captured</label>
@@ -153,7 +174,9 @@
         <div class="card">
             <img src="./src/img/Eevee.png" alt="Eevee">
             <h2>Eevee</h2>
-            <p>Normal</p>
+            <p>
+                <span class="type-normal">Normal</span>
+            </p>
             <div class="checkbox-wrapper-14">
                 <input id="s1-10" type="checkbox" class="switch">
                 <label for="s1-10">Captured</label>

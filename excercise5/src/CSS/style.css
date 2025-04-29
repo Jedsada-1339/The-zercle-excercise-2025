@@ -32,6 +32,7 @@ body.dark {
     --color-primary: #1e2a33;
     --color-white: #121212;
     --color-text: #eeeeee;
+    --color-element:#ffffff;
     --color-label: #aaaaaa;
     --color-border: #444444;
     --color-shadow: rgba(255, 255, 255, 0.2);
@@ -44,6 +45,7 @@ body.light {
     --color-primary: #6ecff6;
     --color-white: #ffffff;
     --color-text: #555;
+    --color-element:#a49e9e;
     --color-border: #444444;  
     --color-label: #888;
     --color-shadow: rgba(0, 0, 0, 0.2);
@@ -161,6 +163,78 @@ header {
 .card p {
     margin-bottom: 10px;
     color: var(--color-text);
+}
+
+.type-electric {
+    display: inline-block;
+    padding: 4px 10px;
+    background-color: var(--color-accent, #ffd700); 
+    color: var(--color-element);
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: bold;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    transition: background-color 0.3s ease;
+}
+
+.type-fire {
+    display: inline-block;
+    padding: 4px 10px;
+    background-color: var(--color-accent, #f08030); 
+    color: var(--color-element);
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: bold;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    transition: background-color 0.3s ease;
+}
+
+.type-water {
+    display: inline-block;
+    padding: 4px 10px;
+    background-color: var(--color-accent, #6890f0); 
+    color: var(--color-element);
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: bold;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    transition: background-color 0.3s ease;
+}
+
+.type-grass {
+    display: inline-block;
+    padding: 4px 10px;
+    background-color: var(--color-accent, #78c850); 
+    color: var(--color-element);
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: bold;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    transition: background-color 0.3s ease;
+}
+
+.type-poison{
+    display: inline-block;
+    padding: 4px 10px;
+    background-color: var(--color-accent, #a040a0); 
+    color: var(--color-element);
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: bold;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    transition: background-color 0.3s ease;  
+}
+
+.type-normal{
+    display: inline-block;
+    padding: 4px 10px;
+    background-color: var(--color-accent, #68bef0); 
+    color: var(--color-element);
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: bold;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    transition: background-color 0.3s ease;  
 }
 
 label {
