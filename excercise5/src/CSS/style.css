@@ -125,9 +125,8 @@ header {
 }
 
 .grid-container {
-    justify-content: center;   
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(0, min(100%/3, max(64px, 100%/5))));
+    grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
     gap: 20px;
 }
 
