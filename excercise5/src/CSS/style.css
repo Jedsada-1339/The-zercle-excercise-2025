@@ -6,6 +6,14 @@
     --color-label: #888;
     --color-shadow: rgba(0, 0, 0, 0.1);
     --color-shadow-hover: rgba(0, 0, 0, 0.5);
+    --active: #275EFE;
+    --active-inner: #fff;
+    --focus: 2px rgba(39, 94, 254, .3);
+    --border: #BBC1E1;
+    --border-hover: #275EFE;
+    --background: #fff;
+    --disabled: #F6F8FF;
+    --disabled-inner: #E1E6F9;
 }
 
 * {
@@ -28,9 +36,11 @@ body.dark {
     --color-border: #444444;
     --color-shadow: rgba(255, 255, 255, 0.05);
     --color-shadow-hover: rgba(255, 255, 255, 0.5);
-  }
+    --color-card-bg: #1e1e1e;
+    --color-select-bg: #1f1f1f;
+}
 
-  body.light {
+body.light {
     --color-primary: #6ecff6;
     --color-white: #ffffff;
     --color-text: #555;
@@ -38,7 +48,9 @@ body.dark {
     --color-label: #888;
     --color-shadow: rgba(0, 0, 0, 0.1);
     --color-shadow-hover: rgba(0, 0, 0, 0.5);
-  }
+    --color-card-bg: #1e1e1e;
+    --color-select-bg: #1f1f1f;
+}
 
 header {
     text-align: center;
@@ -68,7 +80,7 @@ header {
     border-radius: 6px;
     cursor: pointer;
     font-weight: bold;
-  }
+}
 
 .select-group {
     margin-top: 20px;
@@ -160,14 +172,6 @@ label {
 
 @supports (-webkit-appearance: none) or (-moz-appearance: none) {
     .checkbox-wrapper-14 input[type=checkbox] {
-        --active: #275EFE;
-        --active-inner: #fff;
-        --focus: 2px rgba(39, 94, 254, .3);
-        --border: #BBC1E1;
-        --border-hover: #275EFE;
-        --background: #fff;
-        --disabled: #F6F8FF;
-        --disabled-inner: #E1E6F9;
         -webkit-appearance: none;
         -moz-appearance: none;
         height: 21px;
