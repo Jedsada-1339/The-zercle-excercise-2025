@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Exercise 4 - Pokemon Grid</title>
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="./src/CSS/style.css">
+</head>
+
+<body>
+
+    <header>
+        <img src="./src/img/International_Pokémon_logo.svg.png" alt="Pokemon Logo" class="logo">
+    </header>
+
+    <section class="filters">
+        <div class="select-group">
+            <label for="type">Type</label>
+            <select id="type">
+                <option selected disabled>Select Type</option>
+                <option>Fire</option>
+                <option>Water</option>
+                <option>Shadow</option>
+                <option>Earth</option>
+                <option>God</option>
+            </select>
+        </div>
+
+        <div class="select-group">
+            <label for="captured">Captured</label>
+            <select id="captured">
+                <option selected disabled>Select Status</option>
+                <option>Captured</option>
+                <option>Not Captured</option>
+            </select>
+        </div>
+
+        <button id="theme-toggle" class="theme-toggle">🌙 Dark Mode</button>
+
+        <script>
+            const toggleBtn = document.getElementById('theme-toggle');
+            const body = document.body;
+          
+            toggleBtn.addEventListener('click', () => {
+              body.classList.toggle('dark');
+              if (body.classList.contains('dark')) {
+                toggleBtn.textContent = '🌙 Dark Mode';
+              } else {
+                toggleBtn.textContent = '☀️ Light Mode';
+              }
+            });
+          </script>
+    </section>
+
+    <main class="grid-container">
+        <div class="card">
+            <img src="./src/img/Pikachu.png" alt="Pikachu">
+            <h2>Pikachu</h2>
+            <p>Electric</p>
+            <div class="checkbox-wrapper-14">
+                <input id="s1-1" type="checkbox" class="switch">
+                <label for="s1-1">Captured</label>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="./src/img/Charmander.png" alt="Charmander">
+            <h2>Charmander</h2>
+            <p>Fire</p>
+            <div class="checkbox-wrapper-14">
+                <input id="s1-2" type="checkbox" class="switch">
+                <label for="s1-2">Captured</label>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="./src/img/Squirtle.png" alt="Squirtle">
+            <h2>Squirtle</h2>
+            <p>Water</p>
+            <div class="checkbox-wrapper-14">
+                <input id="s1-3" type="checkbox" class="switch">
+                <label for="s1-3">Captured</label>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="./src/img/Bulbasaur.png" alt="Bulbasaur">
+            <h2>Bulbasaur</h2>
+            <p>Grass / Poison</p>
+            <div class="checkbox-wrapper-14">
+                <input id="s1-4" type="checkbox" class="switch">
+                <label for="s1-4">Captured</label>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="./src/img/Jigglypuff.png" alt="Jigglypuff">
+            <h2>Jigglypuff</h2>
+            <p>Normal / Fairy</p>
+            <div class="checkbox-wrapper-14">
+                <input id="s1-5" type="checkbox" class="switch">
+                <label for="s1-5">Captured</label>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="./src/img/Meowth.png" alt="Meowth">
+            <h2>Meowth</h2>
+            <p>Normal</p>
+            <div class="checkbox-wrapper-14">
+                <input id="s1-6" type="checkbox" class="switch">
+                <label for="s1-6">Captured</label>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="./src/img/Psyduck.png" alt="Psyduck">
+            <h2>Psyduck</h2>
+            <p>Water</p>
+            <div class="checkbox-wrapper-14">
+                <input id="s1-7" type="checkbox" class="switch">
+                <label for="s1-7">Captured</label>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="./src/img/Machop.png" alt="Machop">
+            <h2>Machop</h2>
+            <p>Fighting</p>
+            <div class="checkbox-wrapper-14">
+                <input id="s1-8" type="checkbox" class="switch">
+                <label for="s1-8">Captured</label>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="./src/img/Gastly.png" alt="Gastly">
+            <h2>Gastly</h2>
+            <p>Ghost / Poison</p>
+            <div class="checkbox-wrapper-14">
+                <input id="s1-9" type="checkbox" class="switch">
+                <label for="s1-9">Captured</label>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="./src/img/Eevee.png" alt="Eevee">
+            <h2>Eevee</h2>
+            <p>Normal</p>
+            <div class="checkbox-wrapper-14">
+                <input id="s1-10" type="checkbox" class="switch">
+                <label for="s1-10">Captured</label>
+            </div>
+        </div>
+
+
+
+    </main>
+
+</body>
+
+</html>
