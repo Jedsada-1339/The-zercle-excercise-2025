@@ -1,0 +1,25 @@
+@import "tailwindcss";
+
+
+@layer components {
+    .btn-dark {
+        @apply rounded-full bg-gray-200 dark:bg-gray-700 text-black dark:text-white text-xl h-14 w-14 flex items-center justify-center transition delay-100 duration-300 hover:bg-gray-300 dark:hover:bg-gray-600 cursor-pointer hover:scale-110;
+    }
+
+    .btn-light {
+        @apply rounded-full bg-gray-500 dark:bg-gray-400 text-black dark:text-white text-xl h-14 w-14 flex items-center justify-center transition delay-100 duration-300 hover:bg-gray-600 dark:hover:bg-gray-500 cursor-pointer hover:scale-110;
+    }
+
+    .btn {
+        @apply rounded-full bg-gray-200 dark:bg-gray-700 text-black dark:text-white text-xl h-14 flex items-center justify-center col-span-1 transition delay-100 duration-300 cursor-pointer hover:scale-110;
+    }
+
+    .btn-orange {
+        @apply rounded-full bg-gradient-to-br from-orange-400 to-orange-600 text-white text-xl h-14 w-14 flex items-center justify-center shadow-lg transition delay-100 duration-300 hover:scale-110 cursor-pointer;
+    }
+
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+}

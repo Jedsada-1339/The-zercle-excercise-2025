@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Excercise8</title>
+
+  <link rel="stylesheet" href="./src/index.css">
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+
+</head>
+
+<body class="bg-gray-100 dark:bg-gray-900 flex justify-center items-center min-h-screen transition-colors duration-500">
+  <div class="bg-white dark:bg-black text-white rounded-3xl p-6 w-80 shadow-2xl transition-colors duration-500">
+
+    <!-- Display -->
+    <div class="text-right text-xl opacity-60 mb-1 text-black" id="historyDisplay"> </div>
+    <div id="display" class="text-right text-5xl font-light mb-6 text-black dark:text-white">0</div>
+
+    <div class="grid grid-cols-4 gap-3">
+
+      <button class="btn-light" onclick="clearDisplay()">C</button>
+      <button class="btn-light" onclick="appendOperator('%')">%</button>
+      <button class="btn-light" onclick="toggleSign()">±</button>
+      <button class="btn-orange" onclick="appendOperator('÷')">÷</button>
+
+      <!-- Numbers -->
+      <button class="btn-dark" onclick="appendNumber('7')">7</button>
+      <button class="btn-dark" onclick="appendNumber('8')">8</button>
+      <button class="btn-dark" onclick="appendNumber('9')">9</button>
+      <button class="btn-orange" onclick="appendOperator('×')">×</button>
+
+      <button class="btn-dark" onclick="appendNumber('4')">4</button>
+      <button class="btn-dark" onclick="appendNumber('5')">5</button>
+      <button class="btn-dark" onclick="appendNumber('6')">6</button>
+      <button class="btn-orange" onclick="appendOperator('-')">−</button>
+
+      <button class="btn-dark" onclick="appendNumber('1')">1</button>
+      <button class="btn-dark" onclick="appendNumber('2')">2</button>
+      <button class="btn-dark" onclick="appendNumber('3')">3</button>
+      <button class="btn-orange" onclick="appendOperator('+')">+</button>
+
+      <button class="btn-dark col-span-2 w-32" onclick="appendNumber('0')">0</button>
+      <button class="btn-dark" onclick="appendDecimal()">.</button>
+      <button class="btn-orange" onclick="calculate()">=</button>
+    </div>
+  </div>
+
+  <script src="./src/script.js"></script>
+</body>
+
+</html>
