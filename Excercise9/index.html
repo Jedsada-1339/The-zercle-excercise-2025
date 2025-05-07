@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Excercise9</title>
+    <link rel="stylesheet" href="./src/index.css">
+  </head>
+
+  <body class="bg-gray-100 min-h-screen flex items-center justify-center p-6">
+
+    <div class="w-full max-w-4xl bg-white rounded-xl shadow-lg p-6 space-y-6">
+  
+      <div>
+        <h2 class="text-xl font-semibold mb-4">Random Quote</h2>
+        <div class="relative bg-gray-50 rounded-lg p-6 border border-gray-200 min-h-[120px]">
+          <p id="quote-text" class="text-lg font-medium italic">Loading...</p>
+          <p id="quote-author" class="text-sm text-gray-500 mt-2"></p>
+          <button
+            id="random-btn"
+            class="absolute bottom-4 right-4 w-8 h-8 rounded-full bg-blue-500 text-white flex items-center justify-center hover:bg-blue-600 cursor-pointer"
+            title="Random quote"
+          >
+            🔄
+          </button>
+        </div>
+      </div>
+  
+      <div class="flex flex-col md:flex-row md:items-center justify-between space-y-4 md:space-y-0">
+        <div class="flex items-center space-x-2">
+          <label for="itemsPerPage" class="font-medium">Item per page:</label>
+          <select id="itemsPerPage" class="border border-gray-300 rounded px-3 py-1">
+            <option>5</option>
+            <option>10</option>
+            <option>20</option>
+          </select>
+        </div>
+  
+        <div id="pagination" class="flex space-x-2 text-sm"></div>
+      </div>
+  
+      <div id="quote-list" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
+    </div>
+
+    <script src="./src/JS.js"></script>
+  </body>
+</html>
