@@ -62,7 +62,10 @@ const genRanges = [
   
   function fetchAndDisplay() {
     const [start, end] = genRanges[currentGen];
-    pokemonList.innerHTML = 'Loading...';
+    pokemonList.innerHTML = `<div role="status" class="fixed inset-0 flex items-center justify-center z-50 bg-white/50">
+                            <img src="./src/img/loading.png" alt="Loading..." class="w-32 h-32 animate-spin" />
+                            <span class="sr-only">Loading...</span>
+                            </div>`;
     const promises = [];
     for (let i = start; i <= end; i++) {
       promises.push(fetch(`https://pokeapi.co/api/v2/pokemon/${i}`).then(res => res.json()));
