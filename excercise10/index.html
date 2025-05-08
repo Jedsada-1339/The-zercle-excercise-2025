@@ -7,12 +7,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Exercise10</title>
   <link rel="stylesheet" href="./src/index.css">
-  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600&display=swap" rel="stylesheet">
+
+  <!-- Google font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Oswald:wght@200..700&family=Prompt:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900
+&family=Sansation:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Tagesschrift&display=swap" rel="stylesheet">
 </head>
 
-<body class="min-h-screen flex flex-col items-center py-10 ">
+<body class="min-h-screen flex flex-col items-center py-10">
 
-  <div class="fixed inset-0 bg-[url('https://styleshit-pokedex.netlify.app/static/media/bg.65cf6936.jpg')] bg-center bg-repeat opacity-30 -z-10"></div>
+  <div
+    class="fixed inset-0 bg-[url('https://styleshit-pokedex.netlify.app/static/media/bg.65cf6936.jpg')] bg-center bg-repeat opacity-30 -z-10">
+  </div>
 
   <header class="pb-16">
     <img src="./src/img/International_Pokémon_logo.svg.png" class="w-3xs" alt="">
@@ -36,6 +43,78 @@
   </section>
 
   <script src="./src/main.js"></script>
+
+  <!-- Modal -->
+  <div class="fixed inset-0 z-50 flex items-center justify-center" role="dialog" aria-modal="true">
+    <!-- Background overlay -->
+    <div class="fixed inset-0 bg-gray-500/75 transition-opacity" aria-hidden="true"></div>
+
+    <!-- Modal Card -->
+    <div class="relative z-10 bg-emerald-400 text-white p-10 rounded-3xl shadow-2xl w-[500px] h-[300px]">
+      <!-- Close Button -->
+      <p class="absolute top-5 left-6 text-2xl font-bold opacity-70 hover:opacity-100 cursor-pointer">❌</p>
+
+      <!-- Pokémon Number -->
+      <p class="absolute top-4 right-6 text-white/30 text-2xl font-bold">#001</p>
+
+      <!-- Pokémon Name -->
+      <h2 class="absolute top-4 right-40 text-4xl font-bold mb-4">Bulbasaur</h2>
+
+      <!-- Types -->
+      <div class="absolute top-20 right-40">
+        <div class="flex gap-3 mb-4">
+          <span class="bg-white/30 text-white px-4 py-1 rounded-full text-base font-semibold">Grass</span>
+          <span class="bg-white/30 text-white px-4 py-1 rounded-full text-base font-semibold">Poison</span>
+        </div>
+      </div>
+      <img src="./src/img/BG/BG.png" alt="" class="absolute bottom-1 right-1 h-36 drop-shadow-lg opacity-25 z-10" />
+    </div>
+
+    <!-- Pokemon Detail -->
+    <div class="fixed top-130 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 flex flex-col items-center" role="dialog"
+      aria-modal="true">
+
+      <!-- Pokémon Image floating above the detail box -->
+      <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png"
+        alt="Bulbasaur" class="h-40 drop-shadow-lg z-50 mb-[-40px]" />
+
+      <!-- Detail Box -->
+      <div class="relative bg-white p-6 rounded-3xl shadow-2xl w-[500px] min-h-[200px] text-gray-800 pt-12">
+        <div class="flex gap-10">
+          <p class="text-md font-bold border-b-2 border-midnight-100 cursor-pointer">About</p>
+          <p class="text-md font-bold cursor-pointer">Base Stats</p>
+          <p class="text-md font-bold cursor-pointer">Evolution</p>
+        </div>
+
+        <div class="pt-2">
+          <table class="table-auto text-md">
+            <tbody>
+              <tr>
+                <td class="font-[200] text-gray-700 pr-8 pt-4">Species</td>
+                <td class="text-gray-900 pt-4">Grass , Poison</td>
+              </tr>
+              <tr>
+                <td class="font-[200] text-gray-700 pr-8 pt-4">Height</td>
+                <td class="text-gray-900 pt-4">0.7 m</td>
+              </tr>
+              <tr>
+                <td class="font-[200] text-gray-700 pr-8 pt-4">Weight</td>
+                <td class="text-gray-900 pt-4">6.9 kg</td>
+              </tr>
+              <tr>
+                <td class="font-[200] text-gray-700 pr-8 pt-4">Abilities</td>
+                <td class="text-gray-900 pt-4">Overgrow, Chlorophyll</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+
+      </div>
+
+    </div>
+  </div>
+
 </body>
 
 </html>
