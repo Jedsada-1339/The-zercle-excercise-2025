@@ -20,7 +20,7 @@ const genRanges = [
   genRanges.forEach((_, index) => {
     const btn = document.createElement('button');
     btn.textContent = indexToRoman(index + 1);
-    btn.className = 'px-3 py-2 hover:bg-gray-200 cursor-pointer';
+    btn.className = 'px-3 py-2 hover:bg-gray-200 cursor-pointer border-b-4 border-transparent';
     btn.dataset.gen = index;
     genButtonsContainer.appendChild(btn);
   });
@@ -44,6 +44,13 @@ const genRanges = [
   genButtonsContainer.addEventListener('click', e => {
     if (e.target.tagName === 'BUTTON') {
       currentGen = parseInt(e.target.dataset.gen);
+  
+      document.querySelectorAll('#gen-buttons button').forEach(btn => {
+        btn.classList.remove('bg-gray-200','border-b-4', 'border-indigo-500','border-transparent');
+      });
+  
+      e.target.classList.add('bg-gray-200','border-b-4', 'border-indigo-500');
+  
       fetchAndDisplay();
     }
   });
