@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Exercise10</title>
+  <link rel="stylesheet" href="./src/index.css">
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600&display=swap" rel="stylesheet">
+</head>
+
+<body class="min-h-screen flex flex-col items-center py-10 bg-gray-100 bg-[url('https://styleshit-pokedex.netlify.app/static/media/bg.65cf6936.jpg')]">
+  <header class="pb-16">
+    <img src="./src/img/International_Pokémon_logo.svg.png" class="w-3xs" alt="">
+  </header>
+
+  <!-- Filter Bar -->
+  <section class="flex flex-col items-center space-y-4 mb-10">
+    <h1 class="text-xl font-bold text-indigo-500">Select Gen:</h1>
+    <div id="gen-buttons" class="flex items-center bg-white shadow-md rounded-lg overflow-hidden"></div>
+    <div class="flex items-center space-x-2">
+      <label for="sort" class="text-sm font-medium text-gray-600">Sort by type:</label>
+      <select id="sort" class="bg-white px-3 py-1 border rounded-lg shadow-sm text-sm">
+        <option value="all">All</option>
+      </select>
+    </div>
+  </section>
+
+  <!-- Pokemon Card -->
+  <section class="flex flex-col px-20 pb-10 items-center">
+    <section id="pokemon-list" class="grid grid-cols-1 lg:grid-cols-4 gap-12"></section>
+  </section>
+
+  <script src="./src/main.js"></script>
+</body>
+
+</html>
