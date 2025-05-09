@@ -14,6 +14,14 @@ const typeColors = {
 const genButtonsContainer = document.getElementById('gen-buttons');
 const sortSelect = document.getElementById('sort');
 const pokemonList = document.getElementById('pokemon-list');
+const itemsPerPageSelect = document.getElementById('itemsPerPage');
+
+// Pagination variables
+let currentGen = 0;
+let currentType = 'all';
+let currentPage = 1;
+let itemsPerPage = parseInt(itemsPerPageSelect.value);
+let allPokemonData = []; // Store all loaded pokemon data
 
 // Create generation buttons
 genRanges.forEach((_, index) => {
@@ -36,13 +44,11 @@ fetch('https://pokeapi.co/api/v2/type')
     });
   });
 
-let currentGen = 0;
-let currentType = 'all';
-
 // Event listeners
 genButtonsContainer.addEventListener('click', e => {
   if (e.target.tagName === 'BUTTON') {
     currentGen = parseInt(e.target.dataset.gen);
+    currentPage = 1; // Reset to first page when changing generation
     document.querySelectorAll('#gen-buttons button').forEach(btn => {
       btn.classList.remove('bg-gray-200', 'border-b-4', 'border-indigo-500', 'border-transparent');
     });
@@ -53,7 +59,14 @@ genButtonsContainer.addEventListener('click', e => {
 
 sortSelect.addEventListener('change', e => {
   currentType = e.target.value;
-  fetchAndDisplay();
+  currentPage = 1; // Reset to first page when changing filter
+  renderCurrentPage();
+});
+
+itemsPerPageSelect.addEventListener('change', e => {
+  itemsPerPage = parseInt(e.target.value);
+  currentPage = 1; // Reset to first page when changing items per page
+  renderCurrentPage();
 });
 
 function fetchAndDisplay() {
@@ -63,21 +76,166 @@ function fetchAndDisplay() {
       <img src="./src/img/loading.png" alt="Loading..." class="h-44 sm:h-62 animate-spin" />
       <span class="sr-only">Loading...</span>
     </div>`;
+  
   const promises = [];
   for (let i = start; i <= end; i++) {
     promises.push(fetch(`https://pokeapi.co/api/v2/pokemon/${i}`).then(res => res.json()));
   }
+  
   Promise.all(promises).then(pokemons => {
-    let filtered = pokemons;
-    if (currentType !== 'all') {
-      filtered = pokemons.filter(p => p.types.some(t => t.type.name === currentType));
-    }
-    renderCards(filtered);
+    allPokemonData = pokemons;
+    renderCurrentPage();
   });
+}
+
+function renderCurrentPage() {
+  // Filter Pokemon based on selected type
+  let filteredPokemon = allPokemonData;
+  if (currentType !== 'all') {
+    filteredPokemon = allPokemonData.filter(p => p.types.some(t => t.type.name === currentType));
+  }
+  
+  // Calculate pagination
+  const totalItems = filteredPokemon.length;
+  const totalPages = Math.ceil(totalItems / itemsPerPage);
+  
+  // Ensure current page is valid
+  if (currentPage > totalPages) {
+    currentPage = totalPages;
+  }
+  if (currentPage < 1) {
+    currentPage = 1;
+  }
+  
+  // Get items for current page
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = Math.min(startIndex + itemsPerPage, totalItems);
+  const currentItems = filteredPokemon.slice(startIndex, endIndex);
+  
+  // Render cards
+  renderCards(currentItems);
+  
+  // Update pagination UI
+  updatePaginationUI(totalPages);
+}
+
+function updatePaginationUI(totalPages) {
+  const paginationNav = document.querySelector('nav[aria-label="Pagination"]');
+  let paginationHTML = `
+    <a href="#" class="pagination-prev relative inline-flex items-center rounded-l-md px-2 py-2 text-gray-400 ring-1 ring-gray-300 ring-inset hover:bg-gray-50 focus:z-20 focus:outline-offset-0 ${currentPage === 1 ? 'opacity-50 pointer-events-none' : ''}">
+      <span class="sr-only">Previous</span>
+      <svg class="size-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+        <path fill-rule="evenodd" d="M11.78 5.22a.75.75 0 0 1 0 1.06L8.06 10l3.72 3.72a.75.75 0 1 1-1.06 1.06l-4.25-4.25a.75.75 0 0 1 0-1.06l4.25-4.25a.75.75 0 0 1 1.06 0Z" clip-rule="evenodd" />
+      </svg>
+    </a>
+  `;
+  
+  // Generate page buttons
+  const displayedPages = getDisplayedPages(currentPage, totalPages);
+  
+  displayedPages.forEach(page => {
+    if (page === '...') {
+      paginationHTML += `
+        <span class="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-700 ring-1 ring-gray-300 ring-inset">...</span>
+      `;
+    } else {
+      const isActive = page === currentPage;
+      paginationHTML += `
+        <a href="#" data-page="${page}" class="pagination-page relative ${isActive ? 'z-10 inline-flex items-center bg-indigo-600 px-4 py-2 text-sm font-semibold text-white' : 'inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-gray-300 ring-inset hover:bg-gray-200'} focus:z-20 focus:outline-offset-0">
+          ${page}
+        </a>
+      `;
+    }
+  });
+  
+  paginationHTML += `
+    <a href="#" class="pagination-next relative inline-flex items-center rounded-r-md px-2 py-2 text-gray-400 ring-1 ring-gray-300 ring-inset hover:bg-gray-200 focus:z-20 focus:outline-offset-0 ${currentPage === totalPages ? 'opacity-50 pointer-events-none' : ''}">
+      <span class="sr-only">Next</span>
+      <svg class="size-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+        <path fill-rule="evenodd" d="M8.22 5.22a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 0 1-1.06-1.06L11.94 10 8.22 6.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
+      </svg>
+    </a>
+  `;
+  
+  paginationNav.innerHTML = paginationHTML;
+  
+  // Add event listeners to pagination controls
+  document.querySelector('.pagination-prev').addEventListener('click', e => {
+    e.preventDefault();
+    if (currentPage > 1) {
+      currentPage--;
+      renderCurrentPage();
+    }
+  });
+  
+  document.querySelector('.pagination-next').addEventListener('click', e => {
+    e.preventDefault();
+    if (currentPage < totalPages) {
+      currentPage++;
+      renderCurrentPage();
+    }
+  });
+  
+  document.querySelectorAll('.pagination-page').forEach(pageLink => {
+    pageLink.addEventListener('click', e => {
+      e.preventDefault();
+      currentPage = parseInt(e.target.dataset.page);
+      renderCurrentPage();
+    });
+  });
+}
+
+// Helper function to determine which page numbers to show
+function getDisplayedPages(currentPage, totalPages) {
+  const displayedPages = [];
+  
+  if (totalPages <= 7) {
+    // If few pages, show all
+    for (let i = 1; i <= totalPages; i++) {
+      displayedPages.push(i);
+    }
+  } else {
+    // Always show first page
+    displayedPages.push(1);
+    
+    // Determine start and end of displayed pages
+    let startPage = Math.max(2, currentPage - 1);
+    let endPage = Math.min(totalPages - 1, currentPage + 1);
+    
+    // Adjust to show 3 pages minimum
+    if (startPage === 2) endPage = Math.min(4, totalPages - 1);
+    if (endPage === totalPages - 1) startPage = Math.max(2, totalPages - 3);
+    
+    // Add ellipsis if needed before startPage
+    if (startPage > 2) displayedPages.push('...');
+    
+    // Add middle pages
+    for (let i = startPage; i <= endPage; i++) {
+      displayedPages.push(i);
+    }
+    
+    // Add ellipsis if needed after endPage
+    if (endPage < totalPages - 1) displayedPages.push('...');
+    
+    // Always show last page
+    displayedPages.push(totalPages);
+  }
+  
+  return displayedPages;
 }
 
 function renderCards(pokemons) {
   pokemonList.innerHTML = '';
+  
+  if (pokemons.length === 0) {
+    pokemonList.innerHTML = `
+      <div class="col-span-full text-center py-10">
+        <p class="text-xl text-gray-600">No Pokémon found matching your criteria.</p>
+      </div>
+    `;
+    return;
+  }
+  
   pokemons.forEach(p => {
     const card = document.createElement('div');
     const primaryType = p.types[0].type.name;
@@ -255,7 +413,7 @@ document.addEventListener('DOMContentLoaded', () => {
     tabStats.classList.add('border-b-2', 'border-midnight-100');
     tabAbout.classList.remove('border-b-2', 'border-midnight-100');
   });
+  
+  // Initialize pagination
+  genButtonsContainer.querySelector('button').click();
 });
-
-// Initial fetch
-fetchAndDisplay();
