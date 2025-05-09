@@ -46,10 +46,11 @@
 
   <!-- Modal -->
   <div id="modal" class="fixed z-50 flex items-center justify-center hidden" role="dialog" aria-modal="true">
-    <div class="fixed inset-0 bg-gray-500/75" aria-hidden="true"></div>
+    <div id="modalOverlay" class="fixed inset-0 bg-gray-500/75" aria-hidden="true"></div>
 
     <!-- Modal Card -->
-    <div class="modal-card relative rounded-3xl shadow-2xl w-[500px] h-[300px] text-white">
+    <div class="modal-card relative rounded-3xl shadow-2xl w-[500px] h-[300px] text-white 
+     opacity-0 scale-90 transition duration-300 ease-out">
       <p id="closeModal" class="absolute top-5 left-6 text-2xl font-bold opacity-70 hover:opacity-100 cursor-pointer">❌
       </p>
       <p class="absolute top-4 right-6 text-white/30 text-2xl font-bold">#001</p>
@@ -65,10 +66,11 @@
     <div class="fixed top-98 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 flex flex-col items-center" role="dialog"
       aria-modal="true">
 
-      <img class="pokemon-image h-40 drop-shadow-lg z-50 mb-[-60px]" src="" alt="" />
+      <img class="pokemon-image h-40 drop-shadow-lg z-50 mb-[-60px] transition duration-300 opacity-0 scale-90" src="" alt="" />
 
       <!-- Detail Box -->
-      <div class="relative bg-white p-6 rounded-3xl shadow-2xl w-[500px] min-h-[200px] text-gray-800 pt-12">
+      <div class="relative bg-white p-6 rounded-3xl shadow-2xl w-[500px] min-h-[200px] text-gray-800 pt-12 
+     opacity-0 scale-90 transition duration-300 ease-out">
         <!-- Tabs -->
         <div class="flex gap-10 mb-4">
           <p id="tabAbout" class="text-md font-bold border-b-2 border-midnight-100 cursor-pointer">About</p>

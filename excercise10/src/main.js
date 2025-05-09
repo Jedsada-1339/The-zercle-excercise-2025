@@ -58,10 +58,11 @@ sortSelect.addEventListener('change', e => {
 
 function fetchAndDisplay() {
   const [start, end] = genRanges[currentGen];
-  pokemonList.innerHTML = `<div role="status" class="fixed inset-0 flex items-center justify-center z-50 bg-white/50">
-                          <img src="./src/img/loading.png" alt="Loading..." class="h-44 sm:h-62 animate-spin" />
-                          <span class="sr-only">Loading...</span>
-                          </div>`;
+  pokemonList.innerHTML = `
+    <div role="status" class="fixed inset-0 flex items-center justify-center z-50 bg-white/50">
+      <img src="./src/img/loading.png" alt="Loading..." class="h-44 sm:h-62 animate-spin" />
+      <span class="sr-only">Loading...</span>
+    </div>`;
   const promises = [];
   for (let i = start; i <= end; i++) {
     promises.push(fetch(`https://pokeapi.co/api/v2/pokemon/${i}`).then(res => res.json()));
@@ -82,17 +83,9 @@ function renderCards(pokemons) {
     const primaryType = p.types[0].type.name;
     const bgColor = typeColors[primaryType] || '#888';
     card.className = `
-      text-white 
-      p-4 sm:p-6 lg:p-8 
-      rounded-3xl shadow-xl 
-      relative 
-      w-64 sm:w-72 md:w-80 
-      h-60 sm:h-64 md:h-72 
-      overflow-hidden 
-      hover:scale-105 
-      transition delay-100 duration-300
-      cursor-pointer
-    `;
+      text-white p-4 sm:p-6 lg:p-8 rounded-3xl shadow-xl 
+      relative w-64 sm:w-72 md:w-80 h-60 sm:h-64 md:h-72 overflow-hidden 
+      hover:scale-105 transition delay-100 duration-300 cursor-pointer`;
     card.style.backgroundColor = bgColor;
     card.innerHTML = `
       <p class="absolute top-2 right-4 text-white/30 text-2xl sm:text-3xl md:text-4xl font-bold">
@@ -108,7 +101,6 @@ function renderCards(pokemons) {
       <img src="${p.sprites.other['official-artwork'].front_default}" 
            alt="${p.name}" 
            class="absolute bottom-2 right-2 h-28 sm:h-32 md:h-36 drop-shadow-lg z-20"/>
-
       <img src="./src/img/BG/BG.png" 
            alt="${p.name}" 
            class="absolute bottom-1 right-1 h-24 sm:h-38 opacity-25 drop-shadow-lg"/>
@@ -152,49 +144,24 @@ function openModal(pokemon) {
     typeContainer.appendChild(span);
   });
 
-  // About Section
+  // About section
   const rows = detailBox.querySelectorAll('tbody tr');
   rows[0].children[1].textContent = pokemon.types.map(t => capitalize(t.type.name)).join(', ');
   rows[1].children[1].textContent = (pokemon.height / 10).toFixed(1) + ' m';
   rows[2].children[1].textContent = (pokemon.weight / 10).toFixed(1) + ' kg';
   rows[3].children[1].textContent = pokemon.abilities.map(a => capitalize(a.ability.name)).join(', ');
 
-  // Base Stats Section
-  const statsTbody = document.querySelector('#statsSection tbody');
-  statsTbody.innerHTML = '';
-
-  let total = 0;
-
-  pokemon.stats.forEach(stat => {
-    const row = document.createElement('tr');
-    const nameCell = document.createElement('td');
-    const valueCell = document.createElement('td');
-
-    nameCell.className = 'py-2 font-medium text-gray-700';
-    valueCell.className = 'py-2 text-gray-900';
-
-    nameCell.textContent = formatStatName(stat.stat.name);
-    valueCell.textContent = stat.base_stat;
-
-    row.appendChild(nameCell);
-    row.appendChild(valueCell);
-    statsTbody.appendChild(row);
-  });
-
-  modal.classList.remove('hidden');
-
+  // Stats
   const statsSection = document.getElementById('statsSection').querySelector('tbody');
-  statsSection.innerHTML = ''; // Clear old data
-
+  statsSection.innerHTML = '';
+  let total = 0;
   pokemon.stats.forEach(stat => {
     const statName = formatStatName(stat.stat.name);
     const value = stat.base_stat;
     total += value;
-    const barWidth = Math.min(value, 150); // limit bar width
-
-    const row = document.createElement('tr');
+    const barWidth = Math.min(value, 150);
     const barColor = value < 50 ? 'bg-orange-400' : 'bg-indigo-500';
-
+    const row = document.createElement('tr');
     row.innerHTML = `
       <td class="font-[200] text-gray-700 pr-8 pt-4">${statName}</td>
       <td class="py-1 text-right w-12 pt-4">${value}</td>
@@ -202,22 +169,33 @@ function openModal(pokemon) {
         <div class="bg-gray-200 rounded h-3">
           <div class="${barColor} h-3 rounded" style="width: ${barWidth}px"></div>
         </div>
-      </td>
-    `;
+      </td>`;
     statsSection.appendChild(row);
   });
 
   const totalRow = document.createElement('tr');
   totalRow.innerHTML = `
-  <td class="font-[200] text-gray-700 pr-8 pt-4">Total</td>
-  <td class="py-1 text-right w-12 pt-4">${total}</td>
-  <td class="py-1 pl-2 w-50 pt-4">
-    <div class="bg-gray-200 rounded h-3">
-      <div class="bg-green-600 h-3 rounded" style="width: ${Math.min(total / 3, 150)}px"></div>
-    </div>
-  </td>
-`;
-  statsTbody.appendChild(totalRow);
+    <td class="font-[200] text-gray-700 pr-8 pt-4">Total</td>
+    <td class="py-1 text-right w-12 pt-4">${total}</td>
+    <td class="py-1 pl-2 w-50 pt-4">
+      <div class="bg-gray-200 rounded h-3">
+        <div class="bg-green-600 h-3 rounded" style="width: ${Math.min(total / 3, 150)}px"></div>
+      </div>
+    </td>`;
+  statsSection.appendChild(totalRow);
+
+  // Show modal with animation
+  modal.classList.remove('hidden');
+  setTimeout(() => {
+    modalCard.classList.remove('opacity-0', 'scale-90');
+    modalCard.classList.add('opacity-100', 'scale-100');
+
+    detailBox.classList.remove('opacity-0', 'scale-90');
+    detailBox.classList.add('opacity-100', 'scale-100');
+
+    modalImage.classList.remove('opacity-0', 'scale-90');
+    modalImage.classList.add('opacity-100', 'scale-100');
+  }, 10);
 }
 
 function formatStatName(name) {
@@ -232,12 +210,33 @@ function formatStatName(name) {
   }
 }
 
-
+// DOM Ready: setup modal and tab logic
 document.addEventListener('DOMContentLoaded', () => {
-  document.getElementById('closeModal').addEventListener('click', () => {
-    document.getElementById('modal').classList.add('hidden');
-  });
+  const modal = document.getElementById('modal');
+  const modalCard = modal.querySelector('.modal-card');
+  const detailBox = modal.querySelector('.bg-white');
+  const overlay = document.getElementById('modalOverlay');
+  const modalImage = modal.querySelector('.pokemon-image');
 
+  function closeModal() {
+    modalCard.classList.remove('opacity-100', 'scale-100');
+    modalCard.classList.add('opacity-0', 'scale-90');
+
+    detailBox.classList.remove('opacity-100', 'scale-100');
+    detailBox.classList.add('opacity-0', 'scale-90');
+
+    modalImage.classList.remove('opacity-100', 'scale-100');
+    modalImage.classList.add('opacity-0', 'scale-90');
+  
+    setTimeout(() => {
+      modal.classList.add('hidden');
+    }, 300);
+  }
+
+  overlay.addEventListener('click', closeModal);
+  document.getElementById('closeModal').addEventListener('click', closeModal);
+
+  // Tab logic
   const tabAbout = document.getElementById('tabAbout');
   const tabStats = document.getElementById('tabStats');
   const aboutSection = document.getElementById('aboutSection');
@@ -258,4 +257,5 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
+// Initial fetch
 fetchAndDisplay();
