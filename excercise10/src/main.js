@@ -196,14 +196,14 @@ function openModal(pokemon) {
     const barColor = value < 50 ? 'bg-orange-400' : 'bg-indigo-500';
 
     row.innerHTML = `
-  <td class="font-[200] text-gray-700 pr-8 pt-4">${statName}</td>
-  <td class="py-1 text-right w-12 pt-4">${value}</td>
-  <td class="py-1 pl-2 w-40 pt-4">
-    <div class="bg-gray-200 rounded h-3">
-      <div class="${barColor} h-3 rounded" style="width: ${barWidth}px"></div>
-    </div>
-  </td>
-`;
+      <td class="font-[200] text-gray-700 pr-8 pt-4">${statName}</td>
+      <td class="py-1 text-right w-12 pt-4">${value}</td>
+      <td class="py-1 pl-2 w-50 pt-4">
+        <div class="bg-gray-200 rounded h-3">
+          <div class="${barColor} h-3 rounded" style="width: ${barWidth}px"></div>
+        </div>
+      </td>
+    `;
     statsSection.appendChild(row);
   });
 
@@ -211,7 +211,7 @@ function openModal(pokemon) {
   totalRow.innerHTML = `
   <td class="font-[200] text-gray-700 pr-8 pt-4">Total</td>
   <td class="py-1 text-right w-12 pt-4">${total}</td>
-  <td class="py-1 pl-2 w-40 pt-4">
+  <td class="py-1 pl-2 w-50 pt-4">
     <div class="bg-gray-200 rounded h-3">
       <div class="bg-green-600 h-3 rounded" style="width: ${Math.min(total / 3, 150)}px"></div>
     </div>
