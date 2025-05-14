@@ -1,0 +1,21 @@
+<div class="pokemon-card bg-white w-64 p-6 rounded-3xl relative shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden cursor-pointer" (click)="onSelect()">
+  <div [ngClass]="getBackgroundClass(pokemon.types[0])" class="absolute inset-0 rounded-3xl opacity-20"></div>
+  
+  <p class="text-right text-gray-400 font-bold text-xl mb-2">
+    #{{ pokemon.id.toString().padStart(3, '0') }}
+  </p>
+  
+  <div class="flex justify-center mb-4">
+    <img [src]="pokemon.imageUrl" alt="{{ pokemon.name }}" class="h-32 object-contain">
+  </div>
+  
+  <h2 class="text-center text-xl font-bold mb-2">{{ pokemon.name }}</h2>
+  
+  <div class="flex justify-center gap-2">
+    <span *ngFor="let type of pokemon.types" 
+          [ngClass]="getTypeClass(type)"
+          class="px-3 py-1 rounded-full text-white text-xs font-bold">
+      {{ type | titlecase }}
+    </span>
+  </div>
+</div>

@@ -1,0 +1,44 @@
+
+<div class="min-h-screen flex flex-col items-center py-10">
+  <!-- Background -->
+  <div class="fixed inset-0 bg-[url('assets/images/pokemon-bg.jpg')] bg-center bg-repeat opacity-30 -z-10"></div>
+  
+  <!-- Header -->
+  <app-header></app-header>
+  
+  <!-- Filters -->
+  <app-gen-filter 
+    (generationSelected)="onGenerationSelected($event)"
+    (typeSelected)="onTypeSelected($event)">
+  </app-gen-filter>
+  
+  <!-- Pagination -->
+  <app-pagination 
+    [totalItems]="filteredPokemon.length"
+    (pageChanged)="onPageChanged($event)"
+    (itemsPerPageChanged)="onItemsPerPageChanged($event)">
+  </app-pagination>
+  
+  <!-- Pokemon List -->
+  <section class="flex flex-col px-4 md:px-20 pb-10 items-center">
+    <div *ngIf="paginatedPokemon.length > 0" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-12">
+      <app-pokemon-card 
+        *ngFor="let pokemon of paginatedPokemon" 
+        [pokemon]="pokemon"
+        (pokemonSelected)="onPokemonSelected($event)">
+      </app-pokemon-card>
+    </div>
+    
+    <div *ngIf="paginatedPokemon.length === 0" class="p-10 text-center text-gray-600">
+      <p class="text-2xl font-semibold">No Pokémon found</p>
+      <p class="mt-2">Try different filters or check another generation</p>
+    </div>
+  </section>
+  
+  <!-- Pokemon Modal -->
+  <app-pokemon-modal
+    [selectedPokemon]="selectedPokemon"
+    [showModal]="showModal"
+    (closeModalEvent)="closeModal()">
+  </app-pokemon-modal>
+</div>

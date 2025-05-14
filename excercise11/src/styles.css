@@ -1,0 +1,11 @@
+/* You can add global styles to this file, and also import other style files */
+@import "tailwindcss";
+
+@theme {
+    --color-midnight-100: #8995f0;
+    --color-midnight-300: #5751da;
+  }
+
+body {
+  font-family: "Chakra Petch", sans-serif;
+}

@@ -1,0 +1,29 @@
+<section class="flex flex-col items-center space-y-4 mb-10">
+  <h1 class="text-xl font-bold text-indigo-500">Select Gen:</h1>
+  <div class="flex items-center bg-white shadow-md rounded-lg overflow-hidden">
+    <button 
+      *ngFor="let gen of generations" 
+      (click)="selectGeneration(gen)"
+      [class.bg-indigo-600]="selectedGen === gen"
+      [class.text-white]="selectedGen === gen"
+      [class.bg-white]="selectedGen !== gen"
+      class="px-4 py-2 font-medium transition duration-150 hover:bg-indigo-100"
+    >
+      {{ gen === 0 ? 'All' : 'Gen ' + gen }}
+    </button>
+  </div>
+  <div class="flex items-center space-x-2">
+    <label for="sort" class="text-sm font-medium text-gray-600">Sort by type:</label>
+    <select 
+      id="sort" 
+      class="bg-white px-3 py-1 border rounded-lg shadow-sm text-sm"
+      [(ngModel)]="selectedType"
+      (change)="selectType()"
+    >
+      <option value="all">All</option>
+      <option *ngFor="let type of types" [value]="type">
+        {{ type | titlecase }}
+      </option>
+    </select>
+  </div>
+</section>

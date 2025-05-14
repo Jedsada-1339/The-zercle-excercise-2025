@@ -1,0 +1,92 @@
+
+<div *ngIf="showModal" class="fixed z-50 flex items-center justify-center inset-0" role="dialog" aria-modal="true">
+  <div (click)="closeModal()" class="fixed inset-0 bg-gray-500/75" aria-hidden="true"></div>
+
+  <!-- Modal Card -->
+  <div [ngClass]="getBackgroundClass(selectedPokemon?.types[0] || 'normal')" 
+       class="modal-card relative rounded-3xl shadow-2xl w-[500px] h-[300px] text-white">
+    <p (click)="closeModal()" class="absolute top-5 left-6 text-2xl font-bold opacity-70 hover:opacity-100 cursor-pointer">❌</p>
+    <p class="absolute top-4 right-6 text-white/30 text-2xl font-bold">
+      #{{ selectedPokemon?.id.toString().padStart(3, '0') }}
+    </p>
+    <h2 class="text-3xl font-bold text-white text-center mb-2 pt-5">
+      {{ selectedPokemon?.name }}
+    </h2>
+    <div class="type-container flex justify-center gap-2 mb-4">
+      <span *ngFor="let type of selectedPokemon?.types" 
+            [ngClass]="getTypeClass(type)"
+            class="px-3 py-1 rounded-full text-white text-xs font-bold">
+        {{ type | titlecase }}
+      </span>
+    </div>
+    <img src="assets/images/BG.png" alt="" class="absolute bottom-1 right-1 h-36 drop-shadow-lg opacity-25 z-10" />
+  </div>
+
+  <div class="fixed top-98 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 flex flex-col items-center" role="dialog"
+    aria-modal="true">
+
+    <img class="pokemon-image h-40 drop-shadow-lg z-50 mb-[-60px]" 
+         [src]="selectedPokemon?.imageUrl" 
+         alt="{{ selectedPokemon?.name }}" />
+
+    <!-- Detail Box -->
+    <div class="relative bg-white p-6 rounded-3xl shadow-2xl w-[500px] min-h-[200px] text-gray-800 pt-12">
+      <!-- Tabs -->
+      <div class="flex gap-10 mb-4">
+        <p (click)="activeTab = 'about'" 
+           [class.border-midnight-100]="activeTab === 'about'"
+           [class.border-b-2]="activeTab === 'about'"
+           class="text-md font-bold cursor-pointer">About</p>
+        <p (click)="activeTab = 'stats'" 
+           [class.border-midnight-100]="activeTab === 'stats'"
+           [class.border-b-2]="activeTab === 'stats'"
+           class="text-md font-bold cursor-pointer">Base Stats</p>
+      </div>
+
+      <!-- About Section -->
+      <div *ngIf="activeTab === 'about'">
+        <table class="table-auto text-md">
+          <tbody>
+            <tr>
+              <td class="font-[200] text-gray-700 pr-8 pt-4">Species</td>
+              <td class="text-gray-900 pt-4">{{ selectedPokemon?.species }}</td>
+            </tr>
+            <tr>
+              <td class="font-[200] text-gray-700 pr-8 pt-4">Height</td>
+              <td class="text-gray-900 pt-4">{{ selectedPokemon?.height }} m</td>
+            </tr>
+            <tr>
+              <td class="font-[200] text-gray-700 pr-8 pt-4">Weight</td>
+              <td class="text-gray-900 pt-4">{{ selectedPokemon?.weight }} kg</td>
+            </tr>
+            <tr>
+              <td class="font-[200] text-gray-700 pr-8 pt-4">Abilities</td>
+              <td class="text-gray-900 pt-4">{{ selectedPokemon?.abilities.join(', ') }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Base Stats Section -->
+      <div *ngIf="activeTab === 'stats'">
+        <table class="table-auto text-md w-full">
+          <tbody>
+            <tr *ngFor="let stat of selectedPokemon?.stats">
+              <td class="font-[200] text-gray-700 pr-4 pt-2 w-24">{{ stat.name }}</td>
+              <td class="text-gray-900 pt-2 w-8">{{ stat.value }}</td>
+              <td class="pt-2 w-full">
+                <div class="bg-gray-200 h-2 rounded-full w-full">
+                  <div 
+                    [ngStyle]="{ width: (stat.value / 255 * 100) + '%' }"
+                    [ngClass]="getStatColorClass(stat.value)"
+                    class="h-2 rounded-full"
+                  ></div>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
